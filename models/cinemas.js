@@ -15,6 +15,14 @@ const cinema = sequelize.define('cinema',{
     location:{
         type:DataTypes.STRING,
         allowNull:false
+    },
+    createdBy:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        references: {
+        model: "superadmins",
+        key: "id"
+    }
     }
 });
 module.exports = cinema;

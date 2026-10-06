@@ -7,10 +7,9 @@ const moviePrices = sequelize.define('movieprices',{
         primaryKey:true,
         autoIncrement:true
     },
-    name:{
+    type:{
         type:DataTypes.STRING,
-        allowNull:false,
-        unique:true
+        allowNull:false
     },
     movieId:{
         type:DataTypes.INTEGER,

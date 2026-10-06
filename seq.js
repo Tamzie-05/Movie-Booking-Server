@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('./util/database')
 
-const superAdmin = require('./models/superadmin.js') 
+const superAdmin = require('./models/superadmins.js') 
 const cinemaAdmin = require('./models/cinemadmin.js')
 const cinema = require('./models/cinemas.js')
 const payments = require('./models/payments.js')
@@ -18,6 +18,14 @@ superAdmin.hasMany(cinemaAdmin,{
 });
 
 cinemaAdmin.belongsTo(superAdmin,{
+    foreignKey:"createdBy"
+});
+
+cinema.belongsTo(superAdmin,{
+    foreignKey:"createdBy"
+});
+
+superAdmin.hasMany(cinema,{
     foreignKey:"createdBy"
 });
 

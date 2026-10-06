@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize')
 const sequelize = require('../util/database')
 
-const superAdmin = sequelize.define('superAdmin',{
+const superAdmins = sequelize.define('superAdmin',{
     id:{
         type:DataTypes.INTEGER,
         autoIncrement:true,
@@ -38,8 +38,7 @@ const superAdmin = sequelize.define('superAdmin',{
         defaultValue: 'active'
     }
 },{ 
-    timestamps: false
-
+    timestamps: false,
 });
 
-module.exports = superAdmin;
+module.exports = superAdmins;

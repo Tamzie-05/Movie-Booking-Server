@@ -12,14 +12,14 @@ const movies = sequelize.define('movies',{
     name:{
         type:DataTypes.STRING,
         allowNull:false,
-        unique:true
+        unique:false
     },
     cinemaId:{
         type:DataTypes.INTEGER,
         allowNull:false,
         references:{
             model:"cinemas",
-            id:"key"
+            key:"id"
         }
     },
     date:{
@@ -30,9 +30,17 @@ const movies = sequelize.define('movies',{
         type:DataTypes.INTEGER,
         allowNull:false
     },
+    cancellationDeadline: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
     capacity:{
         type:DataTypes.INTEGER,
         allowNull:false
+    },
+    createdBy:{
+        type:DataTypes.INTEGER,
+        allowNull:true
     }
 });
 module.exports=movies;
