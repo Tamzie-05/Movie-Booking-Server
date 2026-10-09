@@ -16,6 +16,12 @@ const sales = sequelize.define('sales',{
             key:'id'
         }
     },
+    ticketId: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+        unique: true
+    },
     customerId:{
         type:DataTypes.INTEGER,
         allowNull:false,
@@ -43,6 +49,16 @@ const sales = sequelize.define('sales',{
             model:'movieprices',
             key:'id'
         }
+    },
+    status: {
+        type: DataTypes.ENUM('booked', 'cancelled'),
+        allowNull: false,
+        defaultValue: 'booked'
+    },
+    bookedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
     }
 });
 

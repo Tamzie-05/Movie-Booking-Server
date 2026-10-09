@@ -45,6 +45,24 @@ const payments = sequelize.define('payments',{
     callbackData:{
         type:DataTypes.TEXT,
         allowNull:true
+    },
+    checkoutRequestId: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+
+    mpesaReceiptNumber: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        unique:true
+    },
+    merchantRequestId: {
+    type: DataTypes.STRING,
+    allowNull: true
+    },
+    phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 });
 module.exports= payments;

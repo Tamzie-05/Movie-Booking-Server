@@ -12,6 +12,10 @@ price.post('/',async(req,res)=>{
         if(!movie){
             return res.status(404).json({message:'Movie not found'})
         }
+
+        if (movie.createdBy !== req.user.id){
+            return res.status(403).json({message:"You are not allowed to add a price to this movie"})
+        }
         const existingPrice = await Price.findOne({
         where:{
             type,

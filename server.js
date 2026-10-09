@@ -1,4 +1,5 @@
 require('dotenv').config()
+require('./seq.js')
 const express = require('express')
 const authenticateToken = require('./middleware/authenticatetoken.js')
 const isSuperAdmin = require('./middleware/issuperadmin')
@@ -8,6 +9,11 @@ const createCinema = require('./apis/createcinema.js')
 const createCinemaAdmin = require("./apis/createcinemaadmin.js");
 const registerCustomer = require('./apis/registercustomers.js')
 const customerLogin = require('./apis/logincustomer.js')
+const getMovies = require('./apis/getmovies.js')
+const getPrices = require('./apis/getmovieprices.js')
+const booking = require('./apis/bookticket.js')
+const payment = require('./apis/payments.js')
+const callBack = require('./apis/callback.js')
 
 const cinemaAdminLogin = require('./apis/cinemaadminlogin.js')
 const validate = require('./middleware/validate.js');
@@ -17,6 +23,7 @@ const addMovie = require('./apis/addmovies.js')
 const isCinemaAdmin = require('./middleware/iscinemaadmin')
 const addMoviePrice = require('./apis/movieprices.js') 
 const customerSchema = require('./validations/customervalid.js')
+
 
 const app = express();
 app.use (express.json());
@@ -30,6 +37,11 @@ app.use('/add-movie',authenticateToken,isCinemaAdmin,validate(movieSchema),addMo
 app.use('/movie-price',authenticateToken,isCinemaAdmin,validate(priceSchema),addMoviePrice)
 app.use('/register-customer',validate(customerSchema),registerCustomer)
 app.use('/login-customer',customerLogin)
+app.use('/movies',getMovies)
+app.use('/movie-prices',getPrices)
+app.use('/bookticket',authenticateToken,booking)
+app.use('/pay',payment)
+app.use('/webhook',callBack)
 
 app.listen(process.env.PORT,()=>{
     console.log(`Server is listening on port ${process.env.PORT}`)
