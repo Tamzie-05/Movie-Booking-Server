@@ -18,6 +18,7 @@ const sales = require('./apis/sales.js')
 const tickets = require('./apis/tickets.js')
 const cancelTicket = require('./apis/cancelticket.js')
 const updatePrice = require('./apis/updateprice.js')
+const getCinemas = require('./apis/getcinemas.js')
 
 const cinemaAdminLogin = require('./apis/cinemaadminlogin.js')
 const validate = require('./middleware/validate.js');
@@ -52,6 +53,7 @@ app.use('/sales',authenticateToken,sales)
 app.use('/tickets',authenticateToken,tickets)
 app.use('/cancel',authenticateToken,cancelTicket)
 app.use('/update-price',authenticateToken,validate(updatePriceSchema),updatePrice)
+app.use('/get-cinemas',authenticateToken,getCinemas)
 
 app.listen(process.env.PORT,()=>{
     console.log(`Server is listening on port ${process.env.PORT}`)

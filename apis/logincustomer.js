@@ -19,7 +19,7 @@ login.post('/',async(req,res)=>{
         }
         const passwordMatch = await comparePassword(password,customer.password)
         if(!passwordMatch){
-            return res.status().json({message:"Invalid email or password"})
+            return res.status(400).json({message:"Invalid email or password"})
         }
         const token = jwt.sign({
             id:customer.id,

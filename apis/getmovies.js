@@ -8,10 +8,10 @@ const movies = express.Router();
 movies.get('/',async(_req,res)=>{
     try{
         const allMovies = await Movie.findAll({
-            attributes:['name','date','capacity'],
+            attributes:['id','name','date','capacity'],
             include:[
                 {model : cinemas, attributes:['name']},
-                {model : moviePrices, attributes:['type','price']}
+                {model : moviePrices, attributes:['id','type','price']}
             ]
         });
         const formattedMovies = allMovies.map(movie => {

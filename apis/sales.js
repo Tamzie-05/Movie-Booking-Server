@@ -12,13 +12,11 @@ sales.get('/:cinemaId/:movieId', async (req, res) => {
         let sales;
 
         if (role === 'superadmin') {
-            // Superadmin can view all sales
             sales = await Sales.findAll({
                 order: [['bookedAt', 'DESC']]
             });
 
         } else if (role === 'cinemaAdmin') {
-            // Cinema admin can view sales for their own cinema
             const cinemaAdmin = await CinemaAdmin.findByPk(req.user.id);
 
             if (!cinemaAdmin) {
