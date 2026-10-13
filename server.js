@@ -14,6 +14,10 @@ const getPrices = require('./apis/getmovieprices.js')
 const booking = require('./apis/bookticket.js')
 const payment = require('./apis/payments.js')
 const callBack = require('./apis/callback.js')
+const sales = require('./apis/sales.js')
+const tickets = require('./apis/tickets.js')
+const cancelTicket = require('./apis/cancelticket.js')
+const updatePrice = require('./apis/updateprice.js')
 
 const cinemaAdminLogin = require('./apis/cinemaadminlogin.js')
 const validate = require('./middleware/validate.js');
@@ -23,6 +27,8 @@ const addMovie = require('./apis/addmovies.js')
 const isCinemaAdmin = require('./middleware/iscinemaadmin')
 const addMoviePrice = require('./apis/movieprices.js') 
 const customerSchema = require('./validations/customervalid.js')
+const updatePriceSchema = require('./validations/updatepricevalid.js')
+
 
 
 const app = express();
@@ -40,8 +46,12 @@ app.use('/login-customer',customerLogin)
 app.use('/movies',getMovies)
 app.use('/movie-prices',getPrices)
 app.use('/bookticket',authenticateToken,booking)
-app.use('/pay',payment)
+app.use('/pay',authenticateToken,payment)
 app.use('/webhook',callBack)
+app.use('/sales',authenticateToken,sales)
+app.use('/tickets',authenticateToken,tickets)
+app.use('/cancel',authenticateToken,cancelTicket)
+app.use('/update-price',authenticateToken,validate(updatePriceSchema),updatePrice)
 
 app.listen(process.env.PORT,()=>{
     console.log(`Server is listening on port ${process.env.PORT}`)

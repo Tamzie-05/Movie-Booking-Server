@@ -11,6 +11,7 @@ const sales = sequelize.define('sales',{
     paymentId:{
         type:DataTypes.INTEGER,
         allowNull:false,
+        unique:true,
         references:{
             model:'payments',
             key:'id'

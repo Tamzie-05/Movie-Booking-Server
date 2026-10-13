@@ -25,12 +25,14 @@ login.post('/',async(req,res)=>{
             id:cinemaAdmin.id,
             email:cinemaAdmin.email,
             status : cinemaAdmin.status,
+            role : 'cinemaAdmin'
          }, process.env.JWT_SECRET,{expiresIn:'1h'});
 
          const refreshToken = jwt.sign({
             id : cinemaAdmin.id,
             email : cinemaAdmin.email,
-            status : cinemaAdmin.status
+            status : cinemaAdmin.status,
+            role : 'cinemaAdmin'
          }, process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'});
          res.json({message:"CinemaAdmin logged in successfully", token, refreshToken});
     }catch(err){

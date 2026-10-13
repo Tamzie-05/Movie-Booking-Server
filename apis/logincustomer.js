@@ -23,9 +23,11 @@ login.post('/',async(req,res)=>{
         }
         const token = jwt.sign({
             id:customer.id,
+            role : 'customer',
             email:customer.email},process.env.JWT_SECRET,{expiresIn:'1h'});
         const refreshToken = jwt.sign({
             id:customer.id,
+            role : 'customer',
             email:customer.email},process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'});
             res.json({message:"Customer logged in successfully",token,refreshToken})    
     }catch(err){

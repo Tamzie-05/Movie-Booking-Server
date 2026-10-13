@@ -113,5 +113,12 @@ sales.hasMany(tickets, {
 tickets.belongsTo(sales, {
     foreignKey: "saleId"
 });
+tickets.belongsTo(movies, {
+    foreignKey: 'movieId'
+});
+
+movies.hasMany(tickets, {
+    foreignKey: 'movieId'
+});
 //sequelize.sync({ alter : true })
 

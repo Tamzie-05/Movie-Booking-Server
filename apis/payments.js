@@ -2,11 +2,11 @@ const express = require('express')
 const Payment = require('../models/payments.js')
 const MoviePrice = require('../models/movieprices.js')
 const Movie = require('../models/movies.js')
-const customerAuth = require("../middleware/customerauth.js");
+
 
 const { sendSTKPush } = require("../util/daraja.js");
 const pay = express.Router()
-pay.post('/',customerAuth,async(req,res)=>{
+pay.post('/',async(req,res)=>{
     let payment;
     try{
         const{movieId,priceId,phone}=req.body
